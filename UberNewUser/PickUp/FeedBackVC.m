@@ -416,7 +416,7 @@
                 [dictParam setValue:[pref objectForKey:@"Amount_Tips"] forKey:@"tips"];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        [manager POST:@"http://ridex.allstarsoftwareinc.com/user/" parameters:dictParam progress:nil success:^(NSURLSessionTask *task, id responseObject)
+        [manager POST:@"https://ride.blazeride.com/user/" parameters:dictParam progress:nil success:^(NSURLSessionTask *task, id responseObject)
          {
              [[AppDelegate sharedAppDelegate]hideLoadingView];
              NSLog(@"Added Tips Response: %@", responseObject);

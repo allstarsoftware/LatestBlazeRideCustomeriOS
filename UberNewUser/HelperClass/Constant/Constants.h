@@ -6,16 +6,18 @@
 //#define Google_Map_Key @"AIzaSyC3-0ZsCBKFQvm1pjZOup9b2-4PtL_4P4w"           
 //#define GOOGLE_KEY_NEW @"AIzaSyCLDSZl4y2CfTWwPzJ933jS2X5jOpDFkEI"
 
-#define RIDE_LATER_URL @"http://ridex.allstarsoftwareinc.com/user/"
+#define RIDE_LATER_URL @"https://ride.blazeride.com/user/"
 
-#define API_URL @"http://ridex.allstarsoftwareinc.com/user/"
-#define SERVICE_URL @"http://ridex.allstarsoftwareinc.com/"
+#define API_URL @"https://ride.blazeride.com/user/"
+#define SERVICE_URL @"https://ride.blazeride.com/"
 
 #define Address_URL @"https://maps.googleapis.com/maps/api/geocode/json?"
-#define PRIVACY_URL @"http://ridex.allstarsoftwareinc.com"
+#define PRIVACY_URL @"https://ride.blazeride.com"
 
 #define Google_Map_API_Key @"AIzaSyAxjY6OlCvrFl2Ldry4a72cGa_rlKW95h0"
 #define Google_Map_Server_Key @"AIzaSyAIgbvLtHHOP7iN4p2mksaoSllQLy75ZGg"
+
+
 
 //AIzaSyDM-ktrHrN2nJ6j1oVrcSq8ZcJKMIE_res
 typedef enum

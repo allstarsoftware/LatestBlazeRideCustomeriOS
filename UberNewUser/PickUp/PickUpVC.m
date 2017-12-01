@@ -1498,7 +1498,7 @@
                     
                     
                     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-                    [manager POST:@"http://ridex.allstarsoftwareinc.com/dog/addschedule" parameters:dictParam progress:nil success:^(NSURLSessionTask *task, id responseObject)
+                    [manager POST:@"https://ride.blazeride.com/dog/addschedule" parameters:dictParam progress:nil success:^(NSURLSessionTask *task, id responseObject)
                     {
                         [[AppDelegate sharedAppDelegate]hideLoadingView];
                         [self.viewForRideLater setHidden:YES];

@@ -3213,11 +3213,11 @@
             <objects>
                 <viewController id="rWO-Iw-aNh" customClass="PaymentVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ifo-lt-AQH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyU-v3-chx" userLabel="btnScan">
-                                <rect key="frame" x="62" y="109" width="197" height="104"/>
+                                <rect key="frame" x="62" y="109" width="197" height="69"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -3234,7 +3234,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Woc-1E-aj6" userLabel="btnNext">
-                                <rect key="frame" x="0.0" y="750" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -4605,6 +4605,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="UTX-Jf-cEe"/>
-        <segue reference="EQ2-3d-9Om"/>
+        <segue reference="Eob-Om-xW5"/>
     </inferredMetricsTieBreakers>
 </document>

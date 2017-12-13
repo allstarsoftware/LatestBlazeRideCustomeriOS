@@ -83,7 +83,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DispalyCardCell *cell=(DispalyCardCell *)[self.tableView dequeueReusableCellWithIdentifier:@"cardcell"];
-    if (cell==nil) {
+    if (cell==nil)
+    {
         cell=[[DispalyCardCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellSlider"];
     }
     
@@ -91,11 +92,7 @@
     {
         NSMutableDictionary *dict=[arrForCards objectAtIndex:indexPath.row];
         cell.lblcardNUmber.text=[NSString stringWithFormat:@"***%@",[dict valueForKey:@"last_four"]];
-        if([card_id isEqualToString:@"0"])
-        {
-            card_id= [NSString stringWithFormat:@"%@",[dict valueForKey:@"id"]];
-        }
-        if([card_id isEqualToString:[dict valueForKey:@"id"]])
+        if([[NSString stringWithFormat:@"%@", [dict valueForKey:@"is_default"]]  isEqual: @"1"])
         {
             cell.btnSelect.hidden=NO;
         }
@@ -106,6 +103,7 @@
     }
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *dict=[arrForCards objectAtIndex:indexPath.row];
@@ -159,27 +157,36 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"],nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil), nil];
-        [alert show];
+
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
+
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"],nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil), nil];
+//        [alert show];
     }
 }
-
 
 -(void)getAllMyCards
 {
     if([[AppDelegate sharedAppDelegate]connected])
     {
-        
+        [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"LOADING",[prefl objectForKey:@"TranslationDocumentName"],nil)];
         NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
         NSString * strForUserId=[pref objectForKey:PREF_USER_ID];
         NSString * strForUserToken=[pref objectForKey:PREF_USER_TOKEN];
-        
-        
         NSMutableString *pageUrl=[NSMutableString stringWithFormat:@"%@?%@=%@&%@=%@",FILE_GET_CARDS,PARAM_ID,strForUserId,PARAM_TOKEN,strForUserToken];
         AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:GET_METHOD];
         [afn getDataFromPath:pageUrl withParamData:nil withBlock:^(id response, NSError *error)
          {
-             
              NSLog(@"History Data= %@",response);
              if (response)
              {
@@ -197,28 +204,23 @@
                      }
                      else
                      {
-                         
                          self.tableView.hidden=NO;
                          self.headerView.hidden=NO;
                          self.lblNoCards.hidden=YES;
                          self.imgNoItems.hidden=YES;
                          [self.tableView reloadData];
                      }
-                     
-                     
                  }
              }
-             
          }];
-        
-        
     }
     else
     {
+        [APPDELEGATE hideLoadingView];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"No Internet" message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil) delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil) otherButtonTitles:nil, nil];
         [alert show];
     }
-    [APPDELEGATE hideLoadingView];
+
     [self.tableView reloadData];
 }
 

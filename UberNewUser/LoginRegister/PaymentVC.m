@@ -145,7 +145,6 @@
 
 - (void)hasToken:(STPToken *)token
 {
-    
     NSLog(@"%@",token.tokenId);
     NSLog(@"%@",token.card.last4);
     

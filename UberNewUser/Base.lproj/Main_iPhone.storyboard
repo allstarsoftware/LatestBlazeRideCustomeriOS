@@ -808,7 +808,7 @@
                                             <action selector="cardBtnPressed:" destination="V4d-Xu-Li9" eventType="touchUpInside" id="dkY-Ls-Wxp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F2r-pA-Sfa">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F2r-pA-Sfa">
                                         <rect key="frame" x="160" y="190" width="160" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.97254901959999995" green="0.59215686270000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1407,7 +1407,6 @@
                         <outlet property="bottomView" destination="EyF-WA-iab" id="oee-Fn-aNX"/>
                         <outlet property="btnCancel" destination="U7s-bI-jJA" id="MGc-zr-hso"/>
                         <outlet property="btnCard" destination="KeK-Rc-4TT" id="tqM-sj-7EC"/>
-                        <outlet property="btnCash" destination="HhW-tA-xld" id="0To-iP-lfQ"/>
                         <outlet property="btnClose" destination="9T6-42-gL5" id="SDY-hz-IMH"/>
                         <outlet property="btnETA" destination="rI3-qt-7pm" id="SNL-Fk-blA"/>
                         <outlet property="btnFare" destination="oYE-GF-bPp" id="jr7-os-mOh"/>

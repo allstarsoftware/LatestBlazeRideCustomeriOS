@@ -86,6 +86,7 @@
       markerOwner = [[GMSMarker alloc] init];
       pref=[NSUserDefaults standardUserDefaults];
       prefl = [[NSUserDefaults alloc]init];
+      is_paymetCard=YES;
       // [[AppDelegate sharedAppDelegate] hideLoadingView];
       //    self.navigationController.navigationBar.barTintColor = [UberStyleGuide colorDefault];
       //    self.navigationController.navigationBar.translucent = NO;
@@ -455,13 +456,9 @@
         {
             NSString *phoneNumber = [@"tel://" stringByAppendingString:@"12345"];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
-            
-            
         }
     }
-    
 }
-
 
 #pragma mark- Google Map Delegate
 
@@ -475,8 +472,8 @@
     self.ImgMarkerDottedLine.image = [UIImage imageNamed:@"pin_client_org"];
     if ([MapPickerTag isEqualToString:@"Pickup"])
     {
-     self.ViewDottedline.backgroundColor = [UberStyleGuide colorSecondary];
-     self.ImgMarkerDottedLine.image = [UIImage imageNamed:@"pin_client_org"];
+        self.ViewDottedline.backgroundColor = [UberStyleGuide colorSecondary];
+        self.ImgMarkerDottedLine.image = [UIImage imageNamed:@"pin_client_org"];
     }
     else if ([MapPickerTag isEqualToString:@"Destination"])
     {
@@ -512,7 +509,6 @@
         StrForDropLong=[NSString stringWithFormat:@"%f",position.target.longitude];
         NSLog(@"Drop values %@ %@",StrForDropLat,StrForDropLong);
     }
-    
 }
 
 - (void) mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position
@@ -821,7 +817,8 @@
         self.txtAddress.text = [NSString stringWithFormat:@"%@",[aPlacemark objectForKey:@"description"]];
         [self textFieldShouldReturn:self.txtAddress];
     }
-    else  if ([self.txtDropoffAddress isFirstResponder]){
+    else  if ([self.txtDropoffAddress isFirstResponder])
+    {
         self.txtDropoffAddress.text = [NSString stringWithFormat:@"%@",[aPlacemark objectForKey:@"description"]];
         [self textFieldShouldReturn:self.txtDropoffAddress];
         [self MarkDropOff];
@@ -969,6 +966,8 @@
 {
     [self.btnCash setSelected:NO];
     [self.btnCard setSelected:YES];
+    self.btnPayRequest.enabled=true;
+    self.btnPayRequest.alpha=1.0;
     is_paymetCard=YES;
     strPayment_Option = @"0";
 }
@@ -1357,7 +1356,7 @@
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> Ride Kangaroo Customer -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         alertLocation.tag=100;
         [alertLocation show];
     }
@@ -2690,26 +2689,36 @@
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     NSError *e;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
-    NSLog(@"WE are testing destination address    %@    %@",[[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lat"], [[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lng"]);
-    if([dict objectForKey:@"results"])
+
+    if([dict valueForKey:@"error_message"])
     {
-        NSArray *arrAddress=[dict objectForKey:@"results"];
-        if ([arrAddress count] > 0)
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
+        [alert show];
+    }
+    else
+    {
+
+        if([dict objectForKey:@"results"])
         {
-            self.txtAddress.text=[[arrAddress objectAtIndex:0] valueForKey:@"formatted_address"];
-            NSDictionary *dictLocation=[[[arrAddress objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"];
-            strForLatitude=[dictLocation valueForKey:@"lat"];
-            strForLongitude=[dictLocation valueForKey:@"lng"];
+            NSLog(@"WE are testing destination address    %@    %@",[[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lat"], [[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lng"]);
+            NSArray *arrAddress=[dict objectForKey:@"results"];
+            if ([arrAddress count] > 0)
+            {
+                self.txtAddress.text=[[arrAddress objectAtIndex:0] valueForKey:@"formatted_address"];
+                NSDictionary *dictLocation=[[[arrAddress objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"];
+                strForLatitude=[dictLocation valueForKey:@"lat"];
+                strForLongitude=[dictLocation valueForKey:@"lng"];
             // [self getETA:[arrDriver objectAtIndex:0]];
-            CLLocationCoordinate2D coor;
-            coor.latitude=[strForLatitude doubleValue];
-            coor.longitude=[strForLongitude doubleValue];
-            pref = [NSUserDefaults standardUserDefaults];
-            [pref setObject:strForLatitude forKey:@"Pickup_Latitude"];
-            [pref setObject:strForLongitude forKey:@"Pickup_Longitude"];
-            [pref synchronize];
-            GMSCameraUpdate *updatedCamera = [GMSCameraUpdate setTarget:coor zoom:14];
-            [mapView_ animateWithCameraUpdate:updatedCamera];
+                CLLocationCoordinate2D coor;
+                coor.latitude=[strForLatitude doubleValue];
+                coor.longitude=[strForLongitude doubleValue];
+                pref = [NSUserDefaults standardUserDefaults];
+                [pref setObject:strForLatitude forKey:@"Pickup_Latitude"];
+                [pref setObject:strForLongitude forKey:@"Pickup_Longitude"];
+                [pref synchronize];
+                GMSCameraUpdate *updatedCamera = [GMSCameraUpdate setTarget:coor zoom:14];
+                [mapView_ animateWithCameraUpdate:updatedCamera];
+            }
         }
     }
 }
@@ -2727,7 +2736,7 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
         if([dict valueForKey:@"error_message"])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bwite" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
             [alert show];
         }
         else

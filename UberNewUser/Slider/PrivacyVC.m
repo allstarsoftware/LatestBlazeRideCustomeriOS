@@ -1,6 +1,6 @@
 //
 //  PrivacyVC.m
-//  Ride Kangaroo
+//  Blaze Ride
 //
 //  Created by Mohammed Arshad on 27/10/17.
 //  Copyright © 2017 Jigs. All rights reserved.

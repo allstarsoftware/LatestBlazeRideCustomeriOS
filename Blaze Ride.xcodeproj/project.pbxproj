@@ -319,7 +319,6 @@
 		FF327B2F1FCE9991004F9DB4 /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF327B2E1FCE9991004F9DB4 /* PrivacyVC.m */; };
 		FFD9EDB21FCD7806006E91AC /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */; };
 		FFD9EDBD1FCD82A1006E91AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */; };
-		FFD9EDBE1FCD963A006E91AC /* GoogleOpenSource.framework in Resources */ = {isa = PBXBuildFile; fileRef = 1F3D15111ABC51E700F27FFC /* GoogleOpenSource.framework */; };
 		FFFBE92E1FD16DA800A51752 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFFBE92D1FD16DA800A51752 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -1899,7 +1898,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD9EDBE1FCD963A006E91AC /* GoogleOpenSource.framework in Resources */,
 				1444C1581A61380B00103C62 /* OpenSans-Semibold.ttf in Resources */,
 				14DADF9519DA84AC00360EC9 /* ub__nav_share.png in Resources */,
 				04A0C58F1A0B99E600B217E1 /* ub__icon_search.png in Resources */,

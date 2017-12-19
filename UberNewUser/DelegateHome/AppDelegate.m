@@ -214,7 +214,7 @@ static NSString * const kClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq60
     {
         [AGPushNoteView showWithNotificationMessage:[NSString stringWithFormat:@"%@",[aps valueForKey:@"title"]]];
         [AGPushNoteView setMessageAction:^(NSString *message) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ride Kangaroo Customer" message:message delegate:nil
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze Ride Customer" message:message delegate:nil
                                                   cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }];

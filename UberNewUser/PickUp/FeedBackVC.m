@@ -218,7 +218,7 @@
         [APPDELEGATE showToastMessage:NSLocalizedStringFromTable(@"Kindly type comments before sharing",[prefl objectForKey:@"TranslationDocumentName"],nil)];
         return;
     }
-    NSString *texttoshare = [NSString stringWithFormat:@"Ride Kangaroo Customer \r%@ \rDownload app from: ",self.txtComments.text];
+    NSString *texttoshare = [NSString stringWithFormat:@"Blaze Ride Customer \r%@ \rDownload app from: ",self.txtComments.text];
 
     //this is your text string to share
     //UIImage *imagetoshare = @""; //this is your image to share

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "532954634.436414"
+            timestampString = "535277661.517548"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2405"
-            endingLineNumber = "2405"
+            startingLineNumber = "2409"
+            endingLineNumber = "2409"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "532954634.436414"
+            timestampString = "535277661.517548"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2486"
-            endingLineNumber = "2486"
+            startingLineNumber = "2490"
+            endingLineNumber = "2490"
+            landmarkName = "@implementation PickUpVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UberNewUser/PickUp/PickUpVC.m"
+            timestampString = "535277661.517548"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2447"
+            endingLineNumber = "2447"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,27 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "532955251.563096"
+            timestampString = "535277661.517548"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2443"
-            endingLineNumber = "2443"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "532955260.426757"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2478"
-            endingLineNumber = "2478"
+            startingLineNumber = "2482"
+            endingLineNumber = "2482"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,12 +170,12 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/LoginRegister/LoginVC.m"
-                  timestampString = "534851507.827497"
+                  timestampString = "535277462.2389"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "595"
                   endingLineNumber = "595"
-                  offsetFromSymbolStart = "2846">
+                  offsetFromSymbolStart = "2460">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -185,12 +185,12 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/LoginRegister/LoginVC.m"
-                  timestampString = "534851507.829717"
+                  timestampString = "535277462.242162"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "596"
                   endingLineNumber = "596"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "100">
                </Location>
             </Locations>
          </BreakpointContent>

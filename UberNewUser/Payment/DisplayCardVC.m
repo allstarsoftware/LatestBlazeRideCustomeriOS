@@ -128,7 +128,7 @@
 {
     if([[AppDelegate sharedAppDelegate]connected])
     {
-         [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"LOADING",[prefl objectForKey:@"TranslationDocumentName"],nil)];
+        [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"LOADING",[prefl objectForKey:@"TranslationDocumentName"],nil)];
         NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
         NSString * strForUserId=[pref objectForKey:PREF_USER_ID];
         NSString * strForUserToken=[pref objectForKey:PREF_USER_TOKEN];
@@ -141,8 +141,7 @@
             
             AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:POST_METHOD];
             [afn getDataFromPath:FILE_SELECT_CARD withParamData:dictParam withBlock:^(id response, NSError *error)
-             {
-                 
+            {
              NSLog(@"History Data= %@",response);
             // [APPDELEGATE hideLoadingView];
              if (response)
@@ -157,7 +156,6 @@
     }
     else
     {
-
         UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"],nil)
                                                                       message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil)
                                                                preferredStyle:UIAlertControllerStyleAlert];
@@ -169,9 +167,6 @@
                                        }];
         [alert addAction:cancelButton];
         [self presentViewController:alert animated:YES completion:nil];
-
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"],nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil), nil];
-//        [alert show];
     }
 }
 

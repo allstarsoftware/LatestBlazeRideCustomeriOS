@@ -14,7 +14,7 @@
 #define Address_URL @"https://maps.googleapis.com/maps/api/geocode/json?"
 #define PRIVACY_URL @"https://ride.blazeride.com"
 
-#define Google_Map_API_Key @"AIzaSyAxjY6OlCvrFl2Ldry4a72cGa_rlKW95h0"
+#define Google_Map_API_Key @"AIzaSyCgxqkPlvKEo0wptKpZsHSMFgtVxptLLFE"
 #define Google_Map_Server_Key @"AIzaSyAIgbvLtHHOP7iN4p2mksaoSllQLy75ZGg"
 
 

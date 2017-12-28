@@ -557,14 +557,11 @@
     {
         
     }
-    
-    
 }
 
 -(void)GetDropAddress
 {
-    
-    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false&key=AIzaSyCm5KPAkfY861LBkm5SIAFyUg4ZXuPNX-0",[StrForDropLat floatValue], [StrForDropLong floatValue], [StrForDropLat floatValue], [StrForDropLong floatValue]];
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false&key=AIzaSyCgxqkPlvKEo0wptKpZsHSMFgtVxptLLFE",[StrForDropLat floatValue], [StrForDropLong floatValue], [StrForDropLat floatValue], [StrForDropLong floatValue]];
     
     NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
     
@@ -593,7 +590,7 @@
 
 -(void)getAddress
 {
-    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false&key=AIzaSyCm5KPAkfY861LBkm5SIAFyUg4ZXuPNX-0",[strForLatitude floatValue], [strForLongitude floatValue], [strForLatitude floatValue], [strForLongitude floatValue]];
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=false&key=AIzaSyCgxqkPlvKEo0wptKpZsHSMFgtVxptLLFE",[strForLatitude floatValue], [strForLongitude floatValue], [strForLatitude floatValue], [strForLongitude floatValue]];
     
     NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
     
@@ -2636,16 +2633,8 @@
 //********************
 -(void)getLocationDropFromString:(NSString *)str
 {
-    NSMutableDictionary *dictParam=[[NSMutableDictionary alloc] init];
-    [dictParam setObject:str forKey:PARAM_ADDRESS];
-    //    [dictParam setObject:GOOGLE_KEY forKey:PARAM_KEY];
-    [dictParam setObject:Google_Map_API_Key forKey:PARAM_KEY];
-    // AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:GET_METHOD];
-    //   [afn getAddressFromGooglewithParamData:dictParam withBlock:^(id response, NSError *error)
-    // {
-    //Pickup Location New fixing done on 17th febraury
-    NSString *esc_addr =  [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *esc_addr =  [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSString *req = [NSString stringWithFormat:@"https://maps.google.com/maps/api/geocode/json?sensor=false&address=%@&key=%@", esc_addr, Google_Map_API_Key];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     NSError *e;
@@ -2654,10 +2643,8 @@
     
     if([dict objectForKey:@"results"])
     {
-        
         NSArray *arrAddress=[dict objectForKey:@"results"];
         if ([arrAddress count] > 0)
-            
         {
             self.txtDropoffAddress.text=[[arrAddress objectAtIndex:0] valueForKey:@"formatted_address"];
             NSDictionary *dictLocation=[[[arrAddress objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"];
@@ -2669,22 +2656,16 @@
             coor.longitude=[strForLongitude doubleValue];
             GMSCameraUpdate *updatedCamera = [GMSCameraUpdate setTarget:coor zoom:14];
             [mapView_ animateWithCameraUpdate:updatedCamera];
- 
         }
     }
-    //}];
 }
-
 
 //****************
 
 -(void)getLocationFromString:(NSString *)str
 {
-    NSMutableDictionary *dictParam=[[NSMutableDictionary alloc] init];
-    [dictParam setObject:str forKey:PARAM_ADDRESS];
-    [dictParam setObject:Google_Map_API_Key forKey:PARAM_KEY];
-    NSString *esc_addr =  [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *esc_addr =  [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSString *req = [NSString stringWithFormat:@"https://maps.google.com/maps/api/geocode/json?sensor=false&address=%@&key=%@", esc_addr, Google_Map_API_Key];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     NSError *e;
@@ -2692,12 +2673,12 @@
 
     if([dict valueForKey:@"error_message"])
     {
+        NSLog(@"gelocationfromstring response %@", dict);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
         [alert show];
     }
     else
     {
-
         if([dict objectForKey:@"results"])
         {
             NSLog(@"WE are testing destination address    %@    %@",[[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lat"], [[[[[dict objectForKey:@"results"] objectAtIndex:0] valueForKey:@"geometry"] valueForKey:@"location"] valueForKey:@"lng"]);
@@ -2727,15 +2708,17 @@
 {
     double latitude = 0, longitude = 0;
     NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *req = [NSString stringWithFormat:@"https://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
     if (result)
     {
         NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
         NSError *e;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
+
         if([dict valueForKey:@"error_message"])
         {
+            NSLog(@"gelocationfromaddressstring response %@", dict);
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
             [alert show];
         }

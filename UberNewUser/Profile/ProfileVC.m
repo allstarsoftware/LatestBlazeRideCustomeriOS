@@ -72,17 +72,15 @@
     [self.txtLastName setTintColor:[UIColor whiteColor]];
     [self SetLocalization];
     [self customFont];
-
-    
-
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self.btnNavigation setTitle:NSLocalizedStringFromTable(@"Profile",[prefl objectForKey:@"TranslationDocumentName"], nil) forState:UIControlStateNormal];
 }
+
 -(void)SetLocalization
 {
-   
     self.txtFirstName.placeholder=NSLocalizedStringFromTable(@"FIRST NAME",[prefl objectForKey:@"TranslationDocumentName"],nil);
     self.txtLastName.placeholder=NSLocalizedStringFromTable(@"LAST NAME",[prefl objectForKey:@"TranslationDocumentName"], nil);
     self.txtEmail.placeholder=NSLocalizedStringFromTable(@"EMAIL",[prefl objectForKey:@"TranslationDocumentName"], nil);
@@ -166,15 +164,14 @@
     {
         [self updateProfile];
     }
-    
 }
+
 -(void)updateProfile
 {
     if([[AppDelegate sharedAppDelegate]connected])
     {
         if([[UtilityClass sharedObject]isValidEmailAddress:self.txtEmail.text])
         {
-            
             [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"EDITING",[prefl objectForKey:@"TranslationDocumentName"], nil)];
             NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
             strForUserId=[pref objectForKey:PREF_USER_ID];
@@ -213,7 +210,7 @@
                         RMUser *getUser = [RMMapper objectWithClass:[RMUser class] fromDictionary:getDict];
                         
                         NSUserDefaults *pref=[NSUserDefaults standardUserDefaults];
-                        [pref setObject:response forKey:PREF_LOGIN_OBJECT];
+                        [pref setObject:[response valueForKey:@"user"] forKey:PREF_LOGIN_OBJECT];
                         [pref synchronize];
                         [self setDataForUserInfo];
                         [APPDELEGATE showToastMessage:NSLocalizedStringFromTable(@"PROFILE_EDIT_SUCESS",[prefl objectForKey:@"TranslationDocumentName"], nil)];
@@ -236,13 +233,9 @@
                 NSLog(@"REGISTER RESPONSE --> %@",response);
             }];
         }
-        
-        
     }
-    
     else
     {
-        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
         [alert show];
     }

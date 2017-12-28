@@ -1171,7 +1171,7 @@
 			children = (
 				FFFBE92B1FD1159C00A51752 /* Blaze ride.entitlements */,
 				F8A3EB531E7A9D8200A9BB4D /* Launch Screen.storyboard */,
-				149BB4B619D682A6002CA0C5 /* Blaxe ride */,
+				149BB4B619D682A6002CA0C5 /* Blaze ride */,
 				149BB4AF19D682A6002CA0C5 /* Frameworks */,
 				149BB4AE19D682A6002CA0C5 /* Products */,
 				A5CC5D97583E10A3550140BB /* Pods */,
@@ -1238,7 +1238,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		149BB4B619D682A6002CA0C5 /* Blaxe ride */ = {
+		149BB4B619D682A6002CA0C5 /* Blaze ride */ = {
 			isa = PBXGroup;
 			children = (
 				1E8E48CF1CE317B0006BB0A1 /* Icon.png */,
@@ -1271,7 +1271,7 @@
 				149BB4CB19D682A6002CA0C5 /* Images.xcassets */,
 				149BB4B719D682A6002CA0C5 /* Supporting Files */,
 			);
-			name = "Blaxe ride";
+			name = "Blaze ride";
 			path = UberNewUser;
 			sourceTree = "<group>";
 		};

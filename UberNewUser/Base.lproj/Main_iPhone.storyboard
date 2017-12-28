@@ -1748,7 +1748,7 @@
                                     <outlet property="delegate" destination="ofh-vb-0A6" id="rkE-Kv-ERo"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3aV-9h-2Hs">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3aV-9h-2Hs">
                                 <rect key="frame" x="0.0" y="482" width="119" height="45"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1776,8 +1776,8 @@
                                     <action selector="cancelBtnPressed:" destination="ofh-vb-0A6" eventType="touchUpInside" id="Xl0-xV-AVx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a6d-g2-lRh">
-                                <rect key="frame" x="122" y="482" width="121" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a6d-g2-lRh">
+                                <rect key="frame" x="0.0" y="482" width="243" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                 <state key="normal" title="Card" backgroundImage="rectangle2">
@@ -1973,7 +1973,6 @@
                         <outlet property="btnCall" destination="wWK-ec-nAY" id="zoc-X5-Ncs"/>
                         <outlet property="btnCancel" destination="1Fi-ap-zTx" id="RJk-Fg-tpe"/>
                         <outlet property="btnCard" destination="a6d-g2-lRh" id="dge-5l-ux7"/>
-                        <outlet property="btnCash" destination="3aV-9h-2Hs" id="buv-Mf-xq2"/>
                         <outlet property="btnDistance" destination="4ZJ-CK-Gcx" id="szL-zZ-qP9"/>
                         <outlet property="btnJobDone" destination="1l6-I5-KPJ" id="os0-sb-Lq8"/>
                         <outlet property="btnJobStart" destination="FK7-lO-524" id="aZx-YZ-aJo"/>

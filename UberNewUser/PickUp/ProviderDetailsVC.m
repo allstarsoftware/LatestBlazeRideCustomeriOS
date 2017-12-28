@@ -598,6 +598,7 @@
                          [self.btnCard setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                          [self.btnCard setTitle:@"Card" forState:UIControlStateHighlighted];
                          [self.btnCard setBackgroundImage:nil forState:UIControlStateNormal];
+                         [self.btnCard setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
                      }
                      else
                      {

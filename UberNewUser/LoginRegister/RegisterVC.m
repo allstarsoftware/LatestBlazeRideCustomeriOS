@@ -30,7 +30,6 @@
 @import Firebase;
 
 
-
 @interface RegisterVC ()<GIDSignInUIDelegate, GIDSignInDelegate>
 {
     AppDelegate *appDelegate;
@@ -45,7 +44,6 @@
     NSString *googleuserfirstname;
     NSString *googleuserlastname;
     NSString *googleusername;
-
 }
 
 @end
@@ -71,11 +69,30 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                  message:@"Blaze Ride would need users to provide gender information. "
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action)
+                               {
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action)
+                                   {
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                   }];
+
+    [alert addAction:okButton];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
 
     prefl = [[NSUserDefaults alloc]init];
     [super setBackBarItem];
     [super setNavBarTitle:TITLE_REGISTER];
-
 
     arrForCountry=[[NSMutableArray alloc]init];
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 600)];
@@ -83,14 +100,12 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     appDelegate=[AppDelegate sharedAppDelegate];
     self.viewForEmailInfo.hidden=YES;
     
-    
     [self.txtSearchText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrycodes" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     arrOriginalData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     arrTableData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     [self.tblCountry reloadData];
-    
     
     NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
@@ -100,9 +115,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
             [self.btnSocialSelectCountry setTitle:[[arrOriginalData objectAtIndex:i] valueForKey:@"phone-code"] forState:UIControlStateNormal];
         }
     }
-
-    
-    
     [self.btnCheckBox setBackgroundImage:[UIImage imageNamed:@"cb_glossy_off.png"] forState:UIControlStateNormal];
     [self.btnRegister setBackgroundColor:[UIColor darkGrayColor]];
     [self.imgProPic applyRoundedCornersFullWithColor:[UIColor whiteColor]];
@@ -123,7 +135,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     self.viewforEmail.layer.cornerRadius=10;
     self.viewforPhone.layer.cornerRadius=10;
 
-
     _maleBtnSelected=YES;
     _femaleBtnSelected=NO;
     [_maleBtn setBackgroundImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
@@ -136,7 +147,8 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     _googlefemaleBtnSelected=NO;
     [_googlemaleBtn setBackgroundImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
     [_googlefemaleBtn setBackgroundImage:[UIImage imageNamed:@"uncheckc.png"] forState:UIControlStateNormal];
-// google plus
+
+    // google plus
     NSString *reg=[[NSUserDefaults standardUserDefaults]valueForKey:@"reg"];
     if([reg isEqual:@"1"])
     {
@@ -230,7 +242,8 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
 #pragma mark-
 #pragma mark- Custom Font & Localization
 
--(void)viewDidLayoutSubviews {
+-(void)viewDidLayoutSubviews
+{
     [self.viewForOTP setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 }
 
@@ -258,9 +271,7 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     //[self.lblenteryourphonenumber setText:NSLocalizedStringFromTable(@"PH_PHONE_NUMBER",[prefl objectForKey:@"TranslationDocumentName"], nil)];
     [self.lblEmailInfo setText:NSLocalizedStringFromTable(@"INFO_EMAIL",[prefl objectForKey:@"TranslationDocumentName"], nil)];
     [self.lblSelectCountry setText:NSLocalizedStringFromTable(@"Select Country",[prefl objectForKey:@"TranslationDocumentName"], nil)];
-    
-    
-    
+
     self.btnNav_Register=[APPDELEGATE setBoldFontDiscriptor:self.btnNav_Register];
     self.btnRegister=[APPDELEGATE setBoldFontDiscriptor:self.btnRegister];
 }
@@ -410,19 +421,12 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     else if(textField==self.txtConfirmPassword)
         [textField resignFirstResponder];
     else if(textField == self.txtSearchText)
-        if (textField.text.length == 0) {
+        if (textField.text.length == 0)
+        {
             arrTableData = [NSMutableArray arrayWithArray:arrOriginalData];
             [self.tblCountry reloadData];
             [textField resignFirstResponder];
-
     }
-    
-    //    else if(textField==self.txtNumber)
-    //        [self.txtAddress becomeFirstResponder];
-    //    else if(textField==self.txtAddress)
-    //        [self.txtBio becomeFirstResponder];
-    //    else if(textField==self.txtBio)
-    //        [self.txtZipCode becomeFirstResponder];
     
     [textField resignFirstResponder];
     return YES;
@@ -455,8 +459,17 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     }
     else
     {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"No Internet",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"No Internet",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -499,7 +512,7 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                  _maleBtnSelected=NO;
                  _femaleBtnSelected=YES;
              }
-             NSLog(@"Text email count is %u", self.txtEmail.text.length);
+             NSLog(@"Text email count is %lu", self.txtEmail.text.length);
              if(self.txtEmail.text.length==0)
              {
                  self.txtFirstName.userInteractionEnabled=false;
@@ -511,7 +524,13 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                  self.btnfacebook.userInteractionEnabled=false;
                  self.btnRegister.userInteractionEnabled=false;
                  self.navigationItem.rightBarButtonItem.enabled=NO;
-                 self.scrollView.scrollEnabled=false;
+                 [self.scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+                 self.maleBtn.userInteractionEnabled=false;
+                 self.femaleBtn.userInteractionEnabled=false;
+                 self.btnSelectCountry.userInteractionEnabled=false;
+                 self.btnemailinfo.userInteractionEnabled=false;
+                 self.txtNumber.userInteractionEnabled=false;
+                 self.scrollView.scrollEnabled=true;
                  [self.viewforEmail setHidden:NO];
              }
              else
@@ -884,7 +903,12 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
         self.btngoogleplus.userInteractionEnabled=false;
         self.btnfacebook.userInteractionEnabled=false;
         self.btnRegister.userInteractionEnabled=false;
-        self.scrollView.scrollEnabled=false;
+        self.maleBtn.userInteractionEnabled=false;
+        self.femaleBtn.userInteractionEnabled=false;
+        self.btnSelectCountry.userInteractionEnabled=false;
+        self.btnemailinfo.userInteractionEnabled=false;
+        self.txtNumber.userInteractionEnabled=false;
+        self.scrollView.scrollEnabled=true;
         self.navigationItem.rightBarButtonItem.enabled=NO;
 
         self.googlephonenumbergenderview.hidden=NO;

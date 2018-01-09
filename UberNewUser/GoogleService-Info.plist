@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>798051678810-mr6rbqnec2an2dpteong91fh03me773b.apps.googleusercontent.com</string>
+	<string>343906907529-37k6455sfa2okd630tvj9pv3l01lsf0q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.798051678810-mr6rbqnec2an2dpteong91fh03me773b</string>
+	<string>com.googleusercontent.apps.343906907529-37k6455sfa2okd630tvj9pv3l01lsf0q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAHvZRDxg6nYra-DDIpwC09moZq_zBFtmo</string>
+	<string>AIzaSyAmhdoLXRCSo_F-wKtl1YcpXQyeS2Dyj3o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>798051678810</string>
+	<string>343906907529</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.blazeride.customer</string>
 	<key>PROJECT_ID</key>
-	<string>blaze-ride-187614</string>
+	<string>blaze-93701</string>
 	<key>STORAGE_BUCKET</key>
-	<string>blaze-ride-187614.appspot.com</string>
+	<string>blaze-93701.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:798051678810:ios:cb15535859f81a3b</string>
+	<string>1:343906907529:ios:cb15535859f81a3b</string>
 	<key>DATABASE_URL</key>
-	<string>https://blaze-ride-187614.firebaseio.com</string>
+	<string>https://blaze-93701.firebaseio.com</string>
 </dict>
 </plist>

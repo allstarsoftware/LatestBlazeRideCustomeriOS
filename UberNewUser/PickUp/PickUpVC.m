@@ -173,8 +173,17 @@
   }
   else
   {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-      [alert show];
+      UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                    message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+      [alert addAction:cancelButton];
+      [self presentViewController:alert animated:YES completion:nil];
   }
 }
 
@@ -269,7 +278,7 @@
 }
 -(void)SetLocalization
 {
-    NSString *check = [prefl objectForKey:@"TranslationDocumentName"];
+    //NSString *check = [prefl objectForKey:@"TranslationDocumentName"];
     NSLog(@"translationdocument name --->> %@",NSLocalizedStringFromTable(@"RIDE_NOW",@"LocalizableSpanish",nil));
     [self.btnRideNow setTitle:NSLocalizedStringFromTable(@"RIDE_NOW",[prefl objectForKey:@"TranslationDocumentName"],nil) forState:UIControlStateNormal];
     
@@ -1035,8 +1044,6 @@
                     {
                         [dictParam setValue:@"1" forKey:PARAM_PAYMENT_OPT];
                     }
-                    
-                    
                     AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:POST_METHOD];
                     [afn getDataFromPath:FILE_CREATE_REQUEST withParamData:dictParam withBlock:^(id response, NSError *error)
                      {
@@ -1048,14 +1055,12 @@
                          {
                              if([[response valueForKey:@"success"]boolValue])
                              {
-                                 
                                  NSLog(@"Response check %@",response);
                                  NSDictionary *jsonObject = (NSDictionary *) response;
                                  NSLog(@"Response check %@",jsonObject);
                                  
                                  UserCreateRequest *gettest = [RMMapper objectWithClass:[UserCreateRequestDetail class] fromDictionary:jsonObject];
                                  NSLog(@"Testdata17: %@",gettest.walker);
-                                
                                  if([[response valueForKey:@"success"]boolValue])
                                  {
                                      NSMutableDictionary *walker=[response valueForKey:@"walker"];
@@ -1075,33 +1080,55 @@
                              }
                              else
                              {
-                                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
-                                 [alert show];
+                                 UIAlertController * alert=[UIAlertController alertControllerWithTitle:@""
+                                                                                               message:@"error"
+                                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                                 UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                                        style:UIAlertActionStyleDefault
+                                                                                      handler:^(UIAlertAction * action)
+                                                                {
+                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                }];
+                                 [alert addAction:cancelButton];
+                                 [self presentViewController:alert animated:YES completion:nil];
                              }
                          }
-                         
-                         
                      }];
                 }
                 else
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-                    [alert show];
+
+                    UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                                  message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                                           style:UIAlertActionStyleDefault
+                                                                         handler:^(UIAlertAction * action)
+                                                   {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+                    [alert addAction:cancelButton];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
             }
-            
         }
         else
             [APPDELEGATE showToastMessage:NSLocalizedStringFromTable(@"SELECT_TYPE",[prefl objectForKey:@"TranslationDocumentName"], nil)];
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> aerotaxipasajero.do -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        alertLocation.tag=100;
-        [alertLocation show];
-        
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                      message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-    
 }
 
 - (IBAction)cancelBtnPressed:(id)sender
@@ -1353,11 +1380,19 @@
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        alertLocation.tag=100;
-        [alertLocation show];
-    }
 
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                      message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 //*********** Ending of Time Picker Method ************
@@ -1464,7 +1499,7 @@
                     strMobileno =[pref objectForKey:PREF_MOBILE_NO];
                     
                     NSTimeZone *timeZone = [NSTimeZone localTimeZone];
-                    NSString *tzName = [timeZone name];
+                   // NSString *tzName = [timeZone name];
                     
                     NSMutableDictionary *dictParam=[[NSMutableDictionary alloc]init];
                     [dictParam setValue:strForLatitude forKey:PARAM_PICKUP_LATITUDE];
@@ -1503,23 +1538,51 @@
                         NSDictionary *result = (NSDictionary*)responseObject;
                         if ([[result objectForKey:@"success"] boolValue])
                         {
-                            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Your ride has been scheduled successfully" delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
-                            [alert show];
+                            UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                                          message:@"Your ride has been scheduled successfully"
+                                                                                   preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                                   style:UIAlertActionStyleDefault
+                                                                                 handler:^(UIAlertAction * action)
+                                                           {
+                                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                                           }];
+                            [alert addAction:cancelButton];
+                            [self presentViewController:alert animated:YES completion:nil];
+
                         }
-                        else {
-                            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Could not schedule ride right now. kindly try again." delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
-                            [alert show];
+                        else
+                        {
+                            UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                                          message:@"Could not schedule ride right now. kindly try again."
+                                                                                   preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                                   style:UIAlertActionStyleDefault
+                                                                                 handler:^(UIAlertAction * action)
+                                                           {
+                                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                                           }];
+                            [alert addAction:cancelButton];
+                            [self presentViewController:alert animated:YES completion:nil];
                         }
-                        
-                    } failure:^(NSURLSessionTask *operation, NSError *error) {
+                    } failure:^(NSURLSessionTask *operation, NSError *error)
+                    {
                         NSLog(@"Error: %@", error);
-                        
                     }];
                 }
                 else
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-                    [alert show];
+                    UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                                  message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                                           style:UIAlertActionStyleDefault
+                                                                         handler:^(UIAlertAction * action)
+                                                   {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+                    [alert addAction:cancelButton];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
             }
             
@@ -1529,12 +1592,18 @@
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> aerotaxipasajero.do -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        alertLocation.tag=100;
-        [alertLocation show];
-        
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                      message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-    
 }
 
 - (IBAction)cancelReqBtnPressed:(id)sender
@@ -1585,18 +1654,33 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-            [alert show];
+            UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                          message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action)
+                                           {
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                           }];
+            [alert addAction:cancelButton];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> aerotaxipasajero.do -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        alertLocation.tag=100;
-        [alertLocation show];
-        
-        
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                      message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -1609,16 +1693,23 @@
         coor.longitude=[strForCurLongitude doubleValue];
         GMSCameraUpdate *updatedCamera = [GMSCameraUpdate setTarget:coor zoom:14];
         [mapView_ animateWithCameraUpdate:updatedCamera];
-  
     }
     else
     {
-        UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enable location access from Setting -> aerotaxipasajero.do -> Privacy -> Location services" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        alertLocation.tag=100;
-        [alertLocation show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                      message:@"Please Enable location access from Setting -> Blaze Ride -> Privacy -> Location services"
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-    
 }
+
 - (IBAction)selectServiceBtnPressed:(id)sender
 {
     UIDevice *thisDevice=[UIDevice currentDevice];
@@ -1651,20 +1742,21 @@
     }
 }
 
--(IBAction)btnSOSAction:(id)sender {
+-(IBAction)btnSOSAction:(id)sender
+{
     [self.viewForSOS setHidden:NO];
     [self.navigationController setNavigationBarHidden:YES];
     [self.viewForSOS setFrame:self.view.frame];
-    
 }
 
--(IBAction)btnSOSCancel:(id)sender {
+-(IBAction)btnSOSCancel:(id)sender
+{
     [self.viewForSOS setHidden:YES];
     [self.navigationController setNavigationBarHidden:NO];
-    
 }
 
--(IBAction)btnSOSPolice:(id)sender {
+-(IBAction)btnSOSPolice:(id)sender
+{
     UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"SOS" message:NSLocalizedStringFromTable(@"SOS_CALL_POLICE",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self
                                                cancelButtonTitle:@"Cancel"
                                                otherButtonTitles:@"OK", nil];
@@ -1672,7 +1764,8 @@
     [alertLocation show];
 }
 
--(IBAction)btnSOSAmbulance:(id)sender {
+-(IBAction)btnSOSAmbulance:(id)sender
+{
     UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"SOS" message:NSLocalizedStringFromTable(@"SOS_CALL_AMBULANCE", [prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self
                                                cancelButtonTitle:@"Cancel"
                                                otherButtonTitles:@"OK", nil];
@@ -1680,13 +1773,13 @@
     [alertLocation show];
 }
 
--(IBAction)btnSOSFireStation:(id)sender {
+-(IBAction)btnSOSFireStation:(id)sender
+{
     UIAlertView *alertLocation=[[UIAlertView alloc]initWithTitle:@"SOS" message:NSLocalizedStringFromTable(@"SOS_CALL_FIRESTATION",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self
                                                cancelButtonTitle:@"Cancel"
                                                otherButtonTitles:@"OK", nil];
     alertLocation.tag=101;
     [alertLocation show];
-    
 }
 
 #pragma mark -
@@ -1704,10 +1797,6 @@
         [afn getDataFromPath:FILE_APPLICATION_TYPE withParamData:dictParam withBlock:^(id response, NSError *error)
          {
              NSLog(@"Test%@",response);
-             GetApplicationTypeDetails *getrooms = [RMMapper objectWithClass:[GetApplicationTypeDetails class] fromDictionary:response];
-             NSDictionary *getDict = (NSDictionary *) getrooms.types;
-             GetallApplicationtypes *getUser = [RMMapper objectWithClass:[GetallApplicationtypes class] fromDictionary:getDict];
-             //NSLog(@"test%@",getUser.base_distance);
              if (response)
              {
                  if([[response valueForKey:@"success"]boolValue])
@@ -1755,34 +1844,43 @@
                      }
                      [self.collectionView reloadData];
                  }
-                 //  [[AppDelegate sharedAppDelegate]hideLoadingView];
                  else
-                 {}
+                 {
+                 }
              }
              
          }];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     [self MarkDropOff];
-    
 }
+
 -(void)setTimerToCheckDriverStatus
 {
-    if (timerForCheckReqStatus) {
+    if (timerForCheckReqStatus)
+    {
         [timerForCheckReqStatus invalidate];
         timerForCheckReqStatus = nil;
     }
-    
     timerForCheckReqStatus = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(checkForRequestStatus) userInfo:nil repeats:YES];
 }
+
 -(void)checkForAppStatus
 {
     pref=[NSUserDefaults standardUserDefaults];
-    //  [pref removeObjectForKey:PREF_REQ_ID];
     NSString *strReqId=[pref objectForKey:PREF_REQ_ID];
     
     if(strReqId!=nil)
@@ -1811,7 +1909,6 @@
          {
              if (response)
              {
-                 
                  if([[response valueForKey:@"success"]boolValue] && [[response valueForKey:@"confirmed_walker"] integerValue]!=0)
                  {
                      NSLog(@"GET REQ--->%@",response);
@@ -1832,7 +1929,6 @@
                              [pref removeObjectForKey:PREF_REQ_ID];
                              return ;
                          }
-                         
                          ProviderDetailsVC *vcFeed = nil;
                          for (int i=0; i<self.navigationController.viewControllers.count; i++)
                          {
@@ -1841,7 +1937,6 @@
                              {
                                  vcFeed = (ProviderDetailsVC *)vc;
                              }
-                             
                          }
                          if (vcFeed==nil)
                          {
@@ -1849,12 +1944,12 @@
                              timerForCheckReqStatus=nil;
                              [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"PLEASE_WAIT",[prefl objectForKey:@"TranslationDocumentName"], nil)];
                              [self performSegueWithIdentifier:SEGUE_TO_ACCEPT sender:self];
-                         }else
+                         }
+                         else
                          {
                              [self.navigationController popToViewController:vcFeed animated:NO];
                          }
                      }
-                     
                  }
                  if([[response valueForKey:@"confirmed_walker"] intValue]==0 && [[response valueForKey:@"status"] intValue]==1)
                  {
@@ -1864,15 +1959,21 @@
                      pref=[NSUserDefaults standardUserDefaults];
                      [pref removeObjectForKey:PREF_REQ_ID];
                      
-                     //                     [APPDELEGATE showToastMessage:NSLocalizedString(@"NO_WALKER", nil)];
                      [APPDELEGATE hideLoadingView];
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:NSLocalizedStringFromTable(@"NO_WALKER",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                     [alert show];
+                     UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Sorry!"
+                                                                                   message:NSLocalizedStringFromTable(@"NO_WALKER",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"Ok"
+                                                                            style:UIAlertActionStyleDefault
+                                                                          handler:^(UIAlertAction * action)
+                                                    {
+                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                    }];
+                     [alert addAction:cancelButton];
+                     [self presentViewController:alert animated:YES completion:nil];
+
                      self.btnCancel.hidden=YES;
                      self.viewForDriver.hidden=YES;
-                     // [self.btnCancel removeFromSuperview];
-                     // [self showMapCurrentLocatinn];
-                     
                  }
                  else
                  {
@@ -1880,61 +1981,26 @@
                      [self showDriver:driverInfo];
                  }
              }
-             
              else
              {}
          }];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
-/*
- -(void)checkDriverStatus
- {
- if([[AppDelegate sharedAppDelegate]connected])
- {
- // [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedString(@"COTACCTING_SERVICE_PROVIDER", nil)];
- 
- pref=[NSUserDefaults standardUserDefaults];
- strForUserId=[pref objectForKey:PREF_USER_ID];
- strForUserToken=[pref objectForKey:PREF_USER_TOKEN];
- NSString *strReqId=[pref objectForKey:PREF_REQ_ID];
- 
- NSString *strForUrl=[NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@=%@",FILE_GET_REQUEST,PARAM_ID,strForUserId,PARAM_TOKEN,strForUserToken,PARAM_REQUEST_ID,strReqId];
- 
- AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:GET_METHOD];
- [afn getDataFromPath:strForUrl withParamData:nil withBlock:^(id response, NSError *error)
- {
- if([[response valueForKey:@"success"]boolValue])
- {
- NSLog(@"GET REQ--->%@",response);
- NSString *strCheck=[response valueForKey:@"walker"];
- 
- if(strCheck)
- {
- [timerForCheckReqStatus invalidate];
- timerForCheckReqStatus=nil;
- [[AppDelegate sharedAppDelegate]hideLoadingView];
- 
- [self performSegueWithIdentifier:SEGUE_TO_ACCEPT sender:self];
- }
- [[AppDelegate sharedAppDelegate]hideLoadingView];
- 
- 
- }
- else
- {}
- }];
- }
- else
- {
- UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" message:@"Sorry, network is not available. Please try again later." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
- [alert show];
- }
- }*/
+
 -(void)checkRequestInProgress
 {
     if([[AppDelegate sharedAppDelegate]connected])
@@ -1974,10 +2040,20 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
+
 -(void)RequestInProgress
 {
     if([[AppDelegate sharedAppDelegate]connected])
@@ -2008,46 +2084,25 @@
                          [pref synchronize];
                          [self checkForRequestStatus];
                      }
-                     
                  }
                  else
                  {}
              }
-
-             /*[[AppDelegate sharedAppDelegate]hideLoadingView];
-             if (response)
-             {
-                 if([[response valueForKey:@"success"]boolValue])
-                 {
-                     NSLog(@"Response-->%@",response);
-                     NSDictionary *set = response;
-                     UserRequestInProgress* tester = [RMMapper objectWithClass:[UserRequestInProgress class] fromDictionary:set];
-                     NSLog(@"Tdata: %@",tester.success);
-                    
-                     pref=[NSUserDefaults standardUserDefaults];
-                     //                     NSMutableDictionary *charge_details=[response valueForKey:@"charge_details"];
-                     //                     dist_price=[charge_details valueForKey:@"distance_price"];
-                     //                     [pref setObject:dist_price forKey:PRFE_PRICE_PER_DIST];
-                     //                     time_price=[charge_details valueForKey:@"price_per_unit_time"];
-                     //                     [pref setObject:[charge_details valueForKey:@"price_per_unit_time"] forKey:PRFE_PRICE_PER_TIME];
-                     //                     self.lblRate_DistancePrice.text=[NSString stringWithFormat:@"$ %@",dist_price];
-                     //                     self.lblRate_TimePrice.text=[NSString stringWithFormat:@"$ %@",time_price];
-                     
-                     [pref setObject:tester.request_id forKey:PREF_REQ_ID];
-                     [pref synchronize];
-                     [self checkForRequestStatus];
-                 }
-                 else
-                 {}
-             }
-             */
-             
          }];
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -2080,8 +2135,18 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET", [prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -2096,24 +2161,16 @@
     [dictParam setValue:strForTypeid forKey:PARAM_TYPE];
     [dictParam setValue:strForLatitude forKey:@"usr_lat"];
     [dictParam setValue:strForLongitude forKey:@"user_long"];
-    
-    
-    //    [APPDELEGATE showLoadingWithTitle:NSLocalizedString(@"GET_PROVIDER", nil)];
     if([[AppDelegate sharedAppDelegate]connected])
     {
         
         AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:POST_METHOD];
         [afn getDataFromPath:FILE_GET_PROVIDERS withParamData:dictParam withBlock:^(id response, NSError *error)
          {
-             NSDictionary *set = response;
+             //NSDictionary *set = response;
              NSLog(@"Respond to Get Provider= %@",response);
-            // [APPDELEGATE hideLoadingView];
-             RMWalker* tester = [RMMapper objectWithClass:[RMwalkerDetails class] fromDictionary:set];
-             //NSLog(@"Sample Testing 1: %@",tester.success);
-             
              if (response)
              {
-                 // [arrDriver removeAllObjects];
                  strForDriverList = [response valueForKey:@"error"];
                  arrDriver=[response valueForKey:@"walker_list"];
              }
@@ -2122,20 +2179,27 @@
                  arrDriver=[[NSMutableArray alloc] init];
              }
              [self showProvider];
-             //[self getAllApplicationType];
-             
          }];
-        
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
+
 -(void)showProvider
 {
     [mapView_ clear];
-    
     NSString *NewPickLat = [NSString stringWithFormat:@"%f",[[pref objectForKey:@"Pickup_Latitude"]doubleValue]];
     NSString *NewPickLong = [NSString stringWithFormat:@"%f",[[pref objectForKey:@"Pickup_Longitude"]doubleValue]];
     NSString *NewDropLat = [NSString stringWithFormat:@"%f",[[pref objectForKey:@"Destination_Latitude"]doubleValue]];
@@ -2161,8 +2225,8 @@
         for (int i=0; i<arrDriver.count; i++)
         {
             NSDictionary *dict=[arrDriver objectAtIndex:i];
-            NSString *strType=[NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
-            if ([[NSString stringWithFormat:@"%@",strForTypeid] isEqualToString:strType])
+            NSString *strType1=[NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
+            if ([[NSString stringWithFormat:@"%@",strForTypeid] isEqualToString:strType1])
             {
                 is_containsVehicle = YES;
                 GMSMarker *driver_marker;
@@ -2429,8 +2493,8 @@
     for (int i=0; i<arrDriver.count; i++)
     {
         NSDictionary *dict=[arrDriver objectAtIndex:i];
-        NSString *strType=[NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
-        if ([strForTypeid isEqualToString:strType])
+        NSString *strType1=[NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
+        if ([strForTypeid isEqualToString:strType1])
         {
             is_containsVehicle = YES;
         }
@@ -2464,9 +2528,9 @@
         }
         self.lblFare.text=[NSString stringWithFormat:@"%@ %@",NSLocalizedStringFromTable(@"Currency", [prefl objectForKey:@"TranslationDocumentName"], nil),strMinFare];
         self.lblRate_BasePrice.text=[NSString stringWithFormat:@"%@%ld for %@ %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),(long)[strMinFare integerValue],[dict valueForKey:@"base_distance"],[dict valueForKey:@"unit"]];
-        self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@%d / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_distance"] integerValue],[dict valueForKey:@"unit"]];
+        self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@%ld / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_distance"] integerValue],[dict valueForKey:@"unit"]];
         NSString *strMin = @"min";
-        self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@%d / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] integerValue],strMin];
+        self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@%ld / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] integerValue],strMin];
         self.lblCarType.text=obj.name;
         pref=[NSUserDefaults standardUserDefaults];
         
@@ -2481,14 +2545,10 @@
         self.lblforETA.text = @"--";
     [self.collectionView reloadData];
     [self setNewPlaceData];
-    
 }
-
-
 
 #pragma mark
 #pragma mark - UITextfield Delegate
-
 
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -2518,21 +2578,16 @@
     {
         MapPickerTag = @"Pickup";
         self.ImgDownArrowPickup.image = [UIImage imageNamed:@"PickupDownArrow.png"];
-//        self.ImageMarkerMapCentre.image = [UIImage imageNamed:@"pin_client_org"];
-//        self.txtAddress.text=@"";
         [self.tableForCity setFrame:CGRectMake(self.viewforPickupLabel.frame.origin.x+15, self.viewforPickupLabel.frame.origin.y+34, self.txtAddress.frame.size.width, 150)];
         if (self.txtAddress.text.length>0)
         {
 
         }
-        
     }
     if(textField==self.txtDropoffAddress)
     {
         MapPickerTag = @"Destination";
         self.ImgDownArrowPickup.image = [UIImage imageNamed:@"DestinationDownArrow.png"];
-//        self.ImageMarkerMapCentre.image = [UIImage imageNamed:@"pin_destination"];
-//        self.txtDropoffAddress.text=@"";
         [self.tableForCity setFrame:CGRectMake(self.viewforPickupLabel.frame.origin.x+15, self.viewforPickupLabel.frame.origin.y+70, self.txtDropoffAddress.frame.size.width, 150)];
         
         if (self.txtAddress.text.length>0)
@@ -2580,16 +2635,21 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     self.tableView.hidden=YES;
-    
-    // self.tableForCountry.frame=tempCountryRect;
-    //  self.tblFilterArtist.frame=tempArtistRect;
-    
     if(textField==self.txtAddress)
     {
         if ([self.txtAddress.text isEqualToString:@""])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please Enter a Pickup Location" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [alert show];
+            UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert"
+                                                                          message:@"Please Enter a Pickup Location"
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action)
+                                           {
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                           }];
+            [alert addAction:cancelButton];
+            [self presentViewController:alert animated:YES completion:nil];
             return YES;
         }
         else 
@@ -2609,8 +2669,17 @@
     {
         if ([self.txtDropoffAddress.text isEqualToString:@""])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please Enter a Destination Location" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [alert show];
+            UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Alert"
+                                                                          message:@"Please Enter a Destination Location"
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action)
+                                           {
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                           }];
+            [alert addAction:cancelButton];
+            [self presentViewController:alert animated:YES completion:nil];
             return YES;
         }
         else
@@ -2674,8 +2743,18 @@
     if([dict valueForKey:@"error_message"])
     {
         NSLog(@"gelocationfromstring response %@", dict);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Blaze Ride"
+                                                                      message:[dict valueForKey:@"error_message"]
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else
     {
@@ -2707,8 +2786,8 @@
 -(CLLocationCoordinate2D) getLocationFromAddressString: (NSString*) addressStr
 {
     double latitude = 0, longitude = 0;
-    NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *req = [NSString stringWithFormat:@"https://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+    NSString *esc_addr =  [addressStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSString *req = [NSString stringWithFormat:@"https://maps.google.com/maps/api/geocode/json?sensor=false&address=%@&key=%@", esc_addr, Google_Map_API_Key];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
     if (result)
     {
@@ -2719,8 +2798,18 @@
         if([dict valueForKey:@"error_message"])
         {
             NSLog(@"gelocationfromaddressstring response %@", dict);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blaze ride" message:[dict valueForKey:@"error_message"] delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-            [alert show];
+
+            UIAlertController * alert=[UIAlertController alertControllerWithTitle:@"Blaze Ride"
+                                                                          message:[dict valueForKey:@"error_message"]
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action)
+                                           {
+                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                           }];
+            [alert addAction:cancelButton];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         else
         {
@@ -2832,11 +2921,18 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil) message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil), nil];
-        [alert show];
+        UIAlertController * alert=[UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Network Status",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                                      message:NSLocalizedStringFromTable(@"NO_INTERNET",[prefl objectForKey:@"TranslationDocumentName"], nil)
+                                                               preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelButton = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action)
+                                       {
+                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                       }];
+        [alert addAction:cancelButton];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-    
-    
 }
 
 

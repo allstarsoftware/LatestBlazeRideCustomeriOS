@@ -317,9 +317,9 @@
 		FF1B991C1FC4122C0041BCCF /* checkc.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1B991B1FC4122C0041BCCF /* checkc.png */; };
 		FF1B991E1FC412330041BCCF /* uncheckc.png in Resources */ = {isa = PBXBuildFile; fileRef = FF1B991D1FC412330041BCCF /* uncheckc.png */; };
 		FF327B2F1FCE9991004F9DB4 /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FF327B2E1FCE9991004F9DB4 /* PrivacyVC.m */; };
+		FF32E4842003A28200FD7C5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF32E4832003A28200FD7C5D /* GoogleService-Info.plist */; };
 		FFD9EDB21FCD7806006E91AC /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */; };
 		FFD9EDBD1FCD82A1006E91AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */; };
-		FFFBE92E1FD16DA800A51752 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFFBE92D1FD16DA800A51752 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -821,10 +821,10 @@
 		FF1B991D1FC412330041BCCF /* uncheckc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheckc.png; sourceTree = "<group>"; };
 		FF327B2D1FCE9991004F9DB4 /* PrivacyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
 		FF327B2E1FCE9991004F9DB4 /* PrivacyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
+		FF32E4832003A28200FD7C5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		FFFBE92B1FD1159C00A51752 /* Blaze ride.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Blaze ride.entitlements"; sourceTree = "<group>"; };
-		FFFBE92D1FD16DA800A51752 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1278,7 +1278,7 @@
 		149BB4B719D682A6002CA0C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFFBE92D1FD16DA800A51752 /* GoogleService-Info.plist */,
+				FF32E4832003A28200FD7C5D /* GoogleService-Info.plist */,
 				048881E519EFD18100A57380 /* countrycodes.json */,
 				149BB4B819D682A6002CA0C5 /* Blaze ride-Info.plist */,
 				149BB4B919D682A6002CA0C5 /* InfoPlist.strings */,
@@ -1977,7 +1977,6 @@
 				0453193019FE41EA000F3050 /* discover.png in Resources */,
 				1E8E48D41CE31D7A006BB0A1 /* beep.mp3 in Resources */,
 				04EB178119F2636100D79E5D /* icon_header@2x.png in Resources */,
-				FFFBE92E1FD16DA800A51752 /* GoogleService-Info.plist in Resources */,
 				04EB178B19F2636100D79E5D /* loading_2@2x.png in Resources */,
 				F8721EE11E73E0B900AD2E94 /* GoogleMaps.bundle in Resources */,
 				14D170E31A39B4A6008C4966 /* job_done_cancel_setetared_btn_pressed.png in Resources */,
@@ -2006,6 +2005,7 @@
 				149BB4CC19D682A6002CA0C5 /* Images.xcassets in Resources */,
 				04BB6F111A53D90B00F6F955 /* AllImages.xcassets in Resources */,
 				04EB178D19F2636100D79E5D /* loading_3@2x.png in Resources */,
+				FF32E4842003A28200FD7C5D /* GoogleService-Info.plist in Resources */,
 				149BB4BB19D682A6002CA0C5 /* InfoPlist.strings in Resources */,
 				04EB178A19F2636100D79E5D /* loading_2.png in Resources */,
 			);

@@ -140,7 +140,6 @@
               // [self getProviders];
           }
           else
-              
           {
               self.viewETA.hidden=NO;
               self.viewForFareAddress.hidden=YES;
@@ -184,7 +183,7 @@
                                      }];
       [alert addAction:cancelButton];
       [self presentViewController:alert animated:YES completion:nil];
-  }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -196,9 +195,9 @@
       [self customSetup];
 }
 
--(void)viewDidLayoutSubviews {
+-(void)viewDidLayoutSubviews
+{
     [super viewDidLayoutSubviews];
-    
     self.viewforPickupLabel.layer.borderWidth = 3;
     self.viewforPickupLabel.layer.borderColor = [[UIColor colorWithRed:243/255.0 green:243/255.0 blue:243/255.0 alpha:1.0] CGColor];
     self.viewForReferralError.hidden=YES;
@@ -207,11 +206,10 @@
     self.ViewforETA.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2-95);
     self.ViewforETA.layer.cornerRadius = 3;
     self.ViewforETA.layer.masksToBounds = YES;
-    
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     pref=[NSUserDefaults standardUserDefaults];
     if([[pref valueForKey:PREF_IS_REFEREE] boolValue])
     {
@@ -253,10 +251,12 @@
         [self cashBtnPressed:nil];
     }
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden=NO;
 }
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.txtAddress resignFirstResponder];
@@ -2915,8 +2915,6 @@
                      self.lblReferralMsg.textColor=[UIColor colorWithRed:205.0/255.0 green:0.0/255.0 blue:15.0/255.0 alpha:1];
                  }
              }
-             
-             
          }];
     }
     else

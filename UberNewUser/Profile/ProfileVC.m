@@ -224,7 +224,6 @@
                     }
                     else
                     {
-                        
                         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
                         [alert show];
                     }

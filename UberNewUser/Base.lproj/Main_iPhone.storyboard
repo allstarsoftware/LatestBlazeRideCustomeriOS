@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_splash" id="ym2-46-hW8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_splash" id="ym2-46-hW8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -4535,7 +4535,7 @@
         <image name="bg_name" width="320" height="32"/>
         <image name="bg_profile" width="320" height="108"/>
         <image name="bg_promo" width="45" height="45"/>
-        <image name="bg_splash" width="320" height="480"/>
+        <image name="bg_splash" width="340" height="480"/>
         <image name="bg_splash_h" width="320" height="568"/>
         <image name="big_popup" width="278" height="270"/>
         <image name="bill_paper" width="11" height="14"/>
@@ -4602,7 +4602,7 @@
         <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UTX-Jf-cEe"/>
+        <segue reference="XVe-qD-vdr"/>
         <segue reference="Eob-Om-xW5"/>
     </inferredMetricsTieBreakers>
 </document>

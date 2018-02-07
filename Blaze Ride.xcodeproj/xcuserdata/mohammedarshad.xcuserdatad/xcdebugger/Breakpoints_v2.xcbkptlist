@@ -25,22 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UberNewUser/LoginRegister/RegisterVC.m"
-            timestampString = "537175843.857607"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "703"
-            endingLineNumber = "703"
-            landmarkName = "-FinishFBRegistration:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "UberNewUser/LoginRegister/LoginVC.m"
             timestampString = "533737688.573874"
             startingColumnNumber = "9223372036854775807"
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/LoginRegister/RegisterVC.m"
-            timestampString = "537175843.857607"
+            timestampString = "539681140.052238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1388"
-            endingLineNumber = "1388"
+            startingLineNumber = "1429"
+            endingLineNumber = "1429"
             landmarkName = "-ResendOTPAction:"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +90,12 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/LoginRegister/LoginVC.m"
-                  timestampString = "537963862.605018"
+                  timestampString = "539680304.600886"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "595"
                   endingLineNumber = "595"
-                  offsetFromSymbolStart = "2460">
+                  offsetFromSymbolStart = "2846">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +105,12 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/LoginRegister/LoginVC.m"
-                  timestampString = "537963862.607381"
+                  timestampString = "539680304.604059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "596"
                   endingLineNumber = "596"
-                  offsetFromSymbolStart = "100">
+                  offsetFromSymbolStart = "76">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/LoginRegister/RegisterVC.m"
-            timestampString = "537175843.857607"
+            timestampString = "539681140.052238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1160"
-            endingLineNumber = "1160"
+            startingLineNumber = "1201"
+            endingLineNumber = "1201"
             landmarkName = "-nextBtnPressed:"
             landmarkType = "7">
          </BreakpointContent>

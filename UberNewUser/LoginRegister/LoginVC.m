@@ -232,8 +232,10 @@
     [login logOut];
     NSArray *arraPermissions = [NSArray arrayWithObjects:@"public_profile",@"email", nil];
     [login logInWithReadPermissions:arraPermissions fromViewController:self
-                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                if (error) {
+                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
+    {
+                                if (error)
+                                {
                                     NSLog(@"Process error");
                                 } else if (result.isCancelled)
                                 {
@@ -284,14 +286,13 @@
      [appDelegate userLoggedIn];
      }
      */
-    
-    
 }
 
 -(IBAction)onClickLogin:(id)sender
 {
     [self Login];
 }
+
 -(void) Login
 {
     if([[AppDelegate sharedAppDelegate]connected])
@@ -357,7 +358,6 @@
                              UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"],nil) otherButtonTitles:nil, nil];
                              [alert show];
                          }
-
                      }
                  }
              }];

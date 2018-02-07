@@ -2163,7 +2163,6 @@
     [dictParam setValue:strForLongitude forKey:@"user_long"];
     if([[AppDelegate sharedAppDelegate]connected])
     {
-        
         AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:POST_METHOD];
         [afn getDataFromPath:FILE_GET_PROVIDERS withParamData:dictParam withBlock:^(id response, NSError *error)
          {
@@ -2179,6 +2178,7 @@
                  arrDriver=[[NSMutableArray alloc] init];
              }
              [self showProvider];
+             [self getAllApplicationType];
          }];
     }
     else
@@ -2896,7 +2896,7 @@
                          }
                          // [self setTimerToCheckDriverStatus];
                          self.navigationController.navigationBarHidden=NO;
-                         //[self getAllApplicationType];
+                         [self getAllApplicationType];
                          [super setNavBarTitle:TITLE_PICKUP];
                          [self customSetup];
                          [self checkForAppStatus];

@@ -554,7 +554,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
              NSLog(@"%@", [error localizedDescription]);
          }
      }];
-    
 }
 
 -(IBAction)viewforemailsubmitBtnaction:(id)sender
@@ -614,13 +613,9 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     else
         [dictParam setValue:self.txtPassword.text forKey:PARAM_PASSWORD];
     
-    
     if(isPicAdded==YES)
     {
-        
         UIImage *imgUpload = [[UtilityClass sharedObject]scaleAndRotateImage:self.imgProPic.image];
-        
-        
         AFNHelper *afn=[[AFNHelper alloc]initWithRequestMethod:POST_METHOD];
         [afn getDataFromPath:FILE_REGISTER withParamDataImage:dictParam andImage:imgUpload withBlock:^(id response, NSError *error) {
             
@@ -646,14 +641,13 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                         [[NSUserDefaults standardUserDefaults] setObject:@"otp_true_not_verified" forKey:@"otp_status_key"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
                     }
-                    else {
+                    else
+                    {
                         [self performSegueWithIdentifier:SEGUE_TO_APPLY_REFERRAL_CODE sender:self];
                         [[NSUserDefaults standardUserDefaults] setObject:@"otp_false_verified" forKey:@"otp_status_key"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
-                        
                     }
                     [pref synchronize];
-                    
                     NSLog(@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"otp_status_key"]);
                 }
                 else
@@ -661,11 +655,9 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
                     [alert show];
                 }
-                
             }
             NSLog(@"REGISTER RESPONSE --> %@",response);
         }];
-        
     }
     else
     {
@@ -707,17 +699,58 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                 }
                 else
                 {
-                    if([[response valueForKey:@"error"]  isEqual: @"Already Phone Number Register"])
-                    {
-                        [self.viewforPhone setHidden:NO];
-                    }
-                    else
-                    {
-                        [self.viewforPhone setHidden:YES];
-                    }
-                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%@",[response objectForKey:@"error"] ] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
-                    [alert show];
 
+                    if([[response valueForKey:@"error"] isEqual:@"The social unique id has already been taken."])
+                    {
+                        UIAlertController * alert = [UIAlertController
+                                                     alertControllerWithTitle:@"Blaze Ride"
+                                                     message:@"Your Social account has been already registered. Please Login."
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction* yesButton = [UIAlertAction
+                                                    actionWithTitle:@"OK"
+                                                    style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * action)
+                                                    {
+                                                        [self.navigationController popToRootViewControllerAnimated:YES];
+                                                    }];
+                        [alert addAction:yesButton];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
+                    else if([[response valueForKey:@"error"] isEqual:@"Already Email ID Register"])
+                    {
+                        UIAlertController * alert = [UIAlertController
+                                                     alertControllerWithTitle:@"Blaze Ride"
+                                                     message:@"Your email has been already registered. Please try with alternate email."
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+                        UIAlertAction* yesButton = [UIAlertAction
+                                                    actionWithTitle:@"OK"
+                                                    style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * action)
+                                                    {
+                                                        self.viewforEmail.hidden=false;
+                                                        self.viewforPhone.hidden=true;
+                                                    }];
+                        [alert addAction:yesButton];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
+                    else if([[response valueForKey:@"error"] isEqual:@"Already Phone Number Register"])
+                    {
+                        UIAlertController * alert = [UIAlertController
+                                                     alertControllerWithTitle:@"Blaze Ride"
+                                                     message:@"Your phone number has been already registered. Please try with alternate phone number."
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+
+                        UIAlertAction* yesButton = [UIAlertAction
+                                                    actionWithTitle:@"OK"
+                                                    style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * action)
+                                                    {
+                                                        self.viewforPhone.hidden=false;
+                                                    }];
+                        [alert addAction:yesButton];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
                 }
             }
             NSLog(@"REGISTER RESPONSE --> %@",response);
@@ -728,10 +761,8 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
 - (IBAction)fbbtnPressed:(id)sender
 {
     strForRegistrationType=@"facebook";
-    
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login logOut];
-
 
     //    NSArray *arraPermissions = [NSArray arrayWithObjects:@"public_profile",@"email",@"user_friends",@"user_location", nil];
     [login logInWithReadPermissions: @[@"public_profile"] fromViewController:self
@@ -815,7 +846,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     
     actionpass = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"CANCEL",[prefl objectForKey:@"TranslationDocumentName"], nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedStringFromTable(@"SELECT_PHOTO",[prefl objectForKey:@"TranslationDocumentName"], nil),NSLocalizedStringFromTable(@"TAKE_PHOTO", [prefl objectForKey:@"TranslationDocumentName"], nil),nil];
     [actionpass showInView:window];
-    
 }
 
 - (IBAction)selectCountryBtnPressed:(id)sender
@@ -843,7 +873,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     
      [self.view removeGestureRecognizer:singleTapGestureRecognizer];
      [self.viewforCountrySearch setHidden:NO];
-
 }
 
 -(IBAction)selectCountryforSocialbtnPressed:(id)sender
@@ -883,7 +912,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                  return;
              }
          }];
-
         googleuserid=user.userID;
         googleusername=user.profile.name;
         googleuserfirstname=user.profile.givenName;
@@ -913,7 +941,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
 
         self.googlephonenumbergenderview.hidden=NO;
         strForSocialId=googleuserid;
-
         // ...
     }
     else
@@ -967,7 +994,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     else
         [dictParam setValue:self.txtPassword.text forKey:PARAM_PASSWORD];
 
-
     if(isPicAdded==YES)
     {
         UIImage *imgUpload = [[UtilityClass sharedObject]scaleAndRotateImage:self.imgProPic.image];
@@ -996,11 +1022,11 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                         [[NSUserDefaults standardUserDefaults] setObject:@"otp_true_not_verified" forKey:@"otp_status_key"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
                     }
-                    else {
+                    else
+                    {
                         [self performSegueWithIdentifier:SEGUE_TO_APPLY_REFERRAL_CODE sender:self];
                         [[NSUserDefaults standardUserDefaults] setObject:@"otp_false_verified" forKey:@"otp_status_key"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
-
                     }
                     [pref synchronize];
 
@@ -1011,11 +1037,9 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
                     [alert show];
                 }
-
             }
             NSLog(@"REGISTER RESPONSE --> %@",response);
         }];
-
     }
     else
     {
@@ -1110,7 +1134,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%@",[response objectForKey:@"error"] ] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
                         [alert show];
                     }
-
                 }
             }
             NSLog(@"REGISTER RESPONSE --> %@",response);
@@ -1124,8 +1147,6 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
     // Perform any operations when the user disconnects from app here.
     // ...
 }
-
-
 
 - (IBAction)nextBtnPressed:(id)sender
 {
@@ -1370,7 +1391,7 @@ static NSString * const kCClientId = @"792876962190-02gfmk1v5v84vp963vnon6fappq6
                 }
                 else
                 {
-                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Codigo de OTP Invalido. Por favor trate de nuevo" delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
+                    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"OTP Code Invalid. Please try again" delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK", [prefl objectForKey:@"TranslationDocumentName"], nil) otherButtonTitles:nil, nil];
                     [alert show];
                 }
                 NSLog(@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"otp_status_key"]);

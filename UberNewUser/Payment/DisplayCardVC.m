@@ -41,12 +41,13 @@
     self.lblNoCards.hidden=YES;
      self.imgNoItems.hidden=YES;
     [self getAllMyCards];
-    
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self.btnMenu setTitle:NSLocalizedStringFromTable(@"ADD PAYMENT",[prefl objectForKey:@"TranslationDocumentName"],nil) forState:UIControlStateNormal];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -204,6 +205,23 @@
                          self.lblNoCards.hidden=YES;
                          self.imgNoItems.hidden=YES;
                          [self.tableView reloadData];
+                     }
+                 }
+                 else
+                 {
+                     if([[response valueForKey:@"error"]  isEqual: @"No Card Found"])
+                     {
+                         [APPDELEGATE hideLoadingView];
+                         self.tableView.hidden=YES;
+                         self.headerView.hidden=YES;
+                         self.lblNoCards.hidden=NO;
+                         self.imgNoItems.hidden=NO;
+                     }
+                     else
+                     {
+                         [APPDELEGATE hideLoadingView];
+                         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Blaze Ride" message:[response valueForKey:@"error"] delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"OK",[prefl objectForKey:@"TranslationDocumentName"],nil) otherButtonTitles:nil, nil];
+                         [alert show];
                      }
                  }
              }

@@ -2389,12 +2389,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UberNewUser/Blaze ride-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UberNewUser/Blaze ride-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/CardIO",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blazeride.customer;
 				PRODUCT_NAME = "Blaze ride";
@@ -2424,12 +2425,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UberNewUser/Blaze ride-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UberNewUser/Blaze ride-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/CardIO",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blazeride.customer;
 				PRODUCT_NAME = "Blaze ride";

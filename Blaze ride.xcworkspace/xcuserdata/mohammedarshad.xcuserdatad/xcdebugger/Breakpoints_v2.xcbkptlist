@@ -26,7 +26,7 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/Schedule/ScheduleVC.m"
-                  timestampString = "540199866.1764441"
+                  timestampString = "541494524.276563"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -41,7 +41,7 @@
                   moduleName = "Blaze ride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mohammedarshad/Desktop/Blaze%20Ride/UberNewUser/Schedule/ScheduleVC.m"
-                  timestampString = "540199866.1795419"
+                  timestampString = "541494524.280002"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539606031.412449"
+            timestampString = "541507296.1729749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2154"
-            endingLineNumber = "2154"
+            startingLineNumber = "2175"
+            endingLineNumber = "2175"
             landmarkName = "-getProviders"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539606633.571293"
+            timestampString = "541507296.1729749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2168"
-            endingLineNumber = "2168"
+            startingLineNumber = "2189"
+            endingLineNumber = "2189"
             landmarkName = "-getProviders"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539606918.643782"
+            timestampString = "541507296.1729749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2166"
-            endingLineNumber = "2166"
+            startingLineNumber = "2187"
+            endingLineNumber = "2187"
             landmarkName = "-getProviders"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539606951.7869231"
+            timestampString = "541507296.1729749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2170"
-            endingLineNumber = "2170"
+            startingLineNumber = "2191"
+            endingLineNumber = "2191"
             landmarkName = "-getProviders"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,43 +346,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539678299.581666"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2227"
-            endingLineNumber = "2227"
-            landmarkName = "-showProvider"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539678350.809762"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2202"
-            endingLineNumber = "2202"
-            landmarkName = "-showProvider"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UberNewUser/PickUp/PickUpVC.m"
-            timestampString = "539678375.37427"
+            timestampString = "541507296.1729749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2223"
             endingLineNumber = "2223"
+            landmarkName = "-showProvider"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UberNewUser/PickUp/PickUpVC.m"
+            timestampString = "541507296.1729749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2244"
+            endingLineNumber = "2244"
             landmarkName = "-showProvider"
             landmarkType = "7">
          </BreakpointContent>
@@ -464,6 +448,22 @@
             startingLineNumber = "186"
             endingLineNumber = "186"
             landmarkName = "-getAllMyCards"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UberNewUser/PickUp/PickUpVC.m"
+            timestampString = "541507296.1729749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2488"
+            endingLineNumber = "2488"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

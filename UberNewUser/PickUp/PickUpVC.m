@@ -82,6 +82,22 @@
   if([[AppDelegate sharedAppDelegate]connected])
   {
       [super viewDidLoad];
+//      [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+//                               forBarMetrics:UIBarMetricsDefault];
+//      self.navigationController.navigationBar.shadowImage = [UIImage new];
+      //self.navigationController.navigationBar.translucent = YES;
+      //self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+
+//      [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+//                                                    forBarMetrics:UIBarMetricsDefault];
+//      //self.navigationController.navigationBar.shadowImage = [UIImage new];
+//      //self.navigationController.navigationBar.translucent = YES;
+//      self.navigationController.view.backgroundColor = [UIColor clearColor];
+//      self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//      [self.navigationController.navigationBar setBackgroundImage:nil
+//                                                    forBarMetrics:UIBarMetricsDefault];
+//
+//      self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
       [self DisplayAnalogClock];
       markerOwner = [[GMSMarker alloc] init];
       pref=[NSUserDefaults standardUserDefaults];
@@ -206,6 +222,9 @@
     self.ViewforETA.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2-95);
     self.ViewforETA.layer.cornerRadius = 3;
     self.ViewforETA.layer.masksToBounds = YES;
+
+    self.viewETA.layer.cornerRadius = 3;
+    self.viewETA.layer.masksToBounds = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -332,7 +351,7 @@
     self.lRate_basePrice.text=NSLocalizedStringFromTable(@"Base Price :",[prefl objectForKey:@"TranslationDocumentName"], nil);
     self.lRate_distancecost.text=NSLocalizedStringFromTable(@"Distance Cost :",[prefl objectForKey:@"TranslationDocumentName"], nil);
     self.lRate_TimeCost.text=NSLocalizedStringFromTable(@"Time Cost :",[prefl objectForKey:@"TranslationDocumentName"], nil);
-    self.lblRateCradNote.text=NSLocalizedStringFromTable(@"Rate_card_note",[prefl objectForKey:@"TranslationDocumentName"], nil);
+    //self.lblRateCradNote.text=NSLocalizedStringFromTable(@"Rate_card_note",[prefl objectForKey:@"TranslationDocumentName"], nil);
     self.txtAddress.placeholder=NSLocalizedStringFromTable(@"SEARCH",[prefl objectForKey:@"TranslationDocumentName"], nil);
     self.txtPreferral.placeholder=NSLocalizedStringFromTable(@"Enter Referral Code",[prefl objectForKey:@"TranslationDocumentName"], nil);
     
@@ -1789,6 +1808,7 @@
 {
     if([[AppDelegate sharedAppDelegate]connected])
     {
+        [[AppDelegate sharedAppDelegate]showLoadingWithTitle:NSLocalizedStringFromTable(@"PLEASE_WAIT",[prefl objectForKey:@"TranslationDocumentName"], nil)];
         NSMutableDictionary *dictParam=[[NSMutableDictionary alloc]init];
         [dictParam setValue:strForLatitude forKey:@"user_lat"];
         [dictParam setValue:strForLongitude forKey:@"user_long"];
@@ -1848,6 +1868,7 @@
                  {
                  }
              }
+             [[AppDelegate sharedAppDelegate]hideLoadingView];
              
          }];
     }
@@ -2506,11 +2527,11 @@
     strPassCap=[NSString stringWithFormat:@"%@",[dict valueForKey:@"max_size"]];
     self.lblFare.text=[NSString stringWithFormat:@"%@ %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),strMinFare];
     self.lblRate_BasePrice.text=[NSString stringWithFormat:@"%@ %ld for %@ %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),(long)[strMinFare integerValue],[dict valueForKey:@"base_distance"],[dict valueForKey:@"unit"]];
-    self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@ %@ / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[dict valueForKey:@"price_per_unit_distance"] ,[dict valueForKey:@"unit"]];
+    self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@ %.02f / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_distance"] floatValue] ,[dict valueForKey:@"unit"]];
     self.lblSize.text=[NSString stringWithFormat:@"%@ PERSONS",strPassCap];
     NSString *strMin = @"min";
     NSLog(@"Mins---%@",strMin);
-    self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@ %ld / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] integerValue],strMin];
+    self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@ %.02f / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] floatValue],strMin];
     str_base_distance = [NSString stringWithFormat:@"%@",[dict valueForKey:@"base_distance"]];
     //str_price_per_unit_distance =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"price_per_unit_distance"]];
     str_price_per_unit_distance =  [NSString stringWithFormat:@"%f",[[dict valueForKey:@"price_per_unit_distance"  ] floatValue]];
@@ -2528,9 +2549,9 @@
         }
         self.lblFare.text=[NSString stringWithFormat:@"%@ %@",NSLocalizedStringFromTable(@"Currency", [prefl objectForKey:@"TranslationDocumentName"], nil),strMinFare];
         self.lblRate_BasePrice.text=[NSString stringWithFormat:@"%@%ld for %@ %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),(long)[strMinFare integerValue],[dict valueForKey:@"base_distance"],[dict valueForKey:@"unit"]];
-        self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@%ld / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_distance"] integerValue],[dict valueForKey:@"unit"]];
+        self.lblRate_DistancePrice.text = [NSString stringWithFormat:@"%@%.02f / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_distance"] floatValue],[dict valueForKey:@"unit"]];
         NSString *strMin = @"min";
-        self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@%ld / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] integerValue],strMin];
+        self.lblRate_TimePrice.text = [NSString stringWithFormat:@"%@%.02f / %@",NSLocalizedStringFromTable(@"Currency",[prefl objectForKey:@"TranslationDocumentName"], nil),[[dict valueForKey:@"price_per_unit_time"] floatValue],strMin];
         self.lblCarType.text=obj.name;
         pref=[NSUserDefaults standardUserDefaults];
         

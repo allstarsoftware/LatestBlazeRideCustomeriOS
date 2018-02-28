@@ -320,6 +320,7 @@
 		FF32E4842003A28200FD7C5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF32E4832003A28200FD7C5D /* GoogleService-Info.plist */; };
 		FFD9EDB21FCD7806006E91AC /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */; };
 		FFD9EDBD1FCD82A1006E91AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */; };
+		FFE24A6B2034576500D6D240 /* GTMOAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE24A6A2034576500D6D240 /* GTMOAuth2.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -824,6 +825,8 @@
 		FF32E4832003A28200FD7C5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		FFE24A682034522400D6D240 /* GTMOAuth2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMOAuth2.framework; path = "Pods/../build/Release-iphoneos/GTMOAuth2/GTMOAuth2.framework"; sourceTree = "<group>"; };
+		FFE24A6A2034576500D6D240 /* GTMOAuth2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMOAuth2.framework; path = "../../Library/Developer/Xcode/DerivedData/Blaze_ride-bnsejhcfyfzglbatxrlaibqhpxat/Build/Products/Debug-iphoneos/GTMOAuth2/GTMOAuth2.framework"; sourceTree = "<group>"; };
 		FFFBE92B1FD1159C00A51752 /* Blaze ride.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Blaze ride.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -832,6 +835,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFE24A6B2034576500D6D240 /* GTMOAuth2.framework in Frameworks */,
 				04427F741AB852920052BFB2 /* SystemConfiguration.framework in Frameworks */,
 				FFD9EDBD1FCD82A1006E91AC /* SafariServices.framework in Frameworks */,
 				1E08523D1E265E5C00162A45 /* Security.framework in Frameworks */,
@@ -1189,6 +1193,8 @@
 		149BB4AF19D682A6002CA0C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFE24A6A2034576500D6D240 /* GTMOAuth2.framework */,
+				FFE24A682034522400D6D240 /* GTMOAuth2.framework */,
 				FFD9EDBC1FCD82A1006E91AC /* SafariServices.framework */,
 				FFD9EDB11FCD7806006E91AC /* GoogleOpenSource.framework */,
 				F8721EE81E73E11A00AD2E94 /* GooglePlaces.bundle */,
@@ -2385,17 +2391,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/FrameWork",
+					"$(PROJECT_DIR)/build/Release-iphoneos/GTMOAuth2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UberNewUser/Blaze ride-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UberNewUser/Blaze ride-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/CardIO",
 					"$(PROJECT_DIR)",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blazeride.customer;
 				PRODUCT_NAME = "Blaze ride";
@@ -2421,11 +2428,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/FrameWork",
+					"$(PROJECT_DIR)/build/Release-iphoneos/GTMOAuth2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UberNewUser/Blaze ride-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/UberNewUser/Blaze ride-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/UberNewUser/ExternalLib/CardIO",
